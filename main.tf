@@ -27,12 +27,14 @@ resource "azurerm_storage_account" "storage_account" {
   account_replication_type  = "LRS"
   enable_https_traffic_only = true
   tags                      = var.tags
+  provider                  = azurerm.storage_account
 }
 
 resource "azurerm_storage_container" "storage_container" {
   name                  = local.storage_container_name
   container_access_type = "private"
   storage_account_name  = azurerm_storage_account.storage_account.name
+  provider              = azurerm.storage_account
 }
 
 resource "azurerm_private_endpoint" "pep" {
@@ -40,6 +42,7 @@ resource "azurerm_private_endpoint" "pep" {
   location            = data.azurerm_resource_group.rg.location
   resource_group_name = data.azurerm_resource_group.rg.name
   subnet_id           = var.private_endpoint_subnet_id
+  provider            = azurerm.storage_account
 
   private_service_connection {
     name                           = local.private_service_connection_name
