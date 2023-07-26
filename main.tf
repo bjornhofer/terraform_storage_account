@@ -1,3 +1,4 @@
+/*
 provider "azurerm" {
   features {}
   alias = "storage_account"
@@ -6,6 +7,7 @@ provider "azurerm" {
   client_secret = var.client_secret
   tenant_id = var.tenant_id
 } 
+*/
 
 data "azurerm_resource_group" "rg" {
   name = var.resource_group_name
