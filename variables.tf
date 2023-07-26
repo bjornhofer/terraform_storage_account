@@ -1,3 +1,4 @@
+/*
 // Provider specific settings
 variable "subscription_id" {
   type = string
@@ -14,6 +15,7 @@ variable "client_secret" {
 variable "tenant_id" {
   type = string
 }
+*/
 
 // Base Information
 variable "base_name" {
