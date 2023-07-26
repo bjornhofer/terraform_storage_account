@@ -9,6 +9,7 @@ provider "azurerm" {
 
 data "azurerm_resource_group" "rg" {
   name = var.resource_group_name
+  provider = azurerm.storage_account
 }
 
 locals {
