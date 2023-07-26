@@ -85,4 +85,5 @@ variable "private_service_connection_name_suffix" {
 variable "private_endpoint_subnet_id" {
   description = "ID of the subnet to use for the private endpoint"
   type = string
+  default = ""
 }
