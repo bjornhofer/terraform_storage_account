@@ -37,6 +37,7 @@ resource "azurerm_storage_container" "storage_container" {
   provider              = azurerm.storage_account
 }
 
+/*
 resource "azurerm_private_endpoint" "pep" {
   name                = local.private_endpoint_name
   location            = data.azurerm_resource_group.rg.location
@@ -52,3 +53,4 @@ resource "azurerm_private_endpoint" "pep" {
   }
   depends_on = [azurerm_storage_account.storage_account, azurerm_storage_container.storage_container]
 }
+*/
