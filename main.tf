@@ -11,7 +11,7 @@ provider "azurerm" {
 
 data "azurerm_resource_group" "rg" {
   name = var.resource_group_name
-  provider = azurerm.storage_account
+  //provider = azurerm.storage_account
 }
 
 locals {
@@ -30,14 +30,14 @@ resource "azurerm_storage_account" "storage_account" {
   account_replication_type  = "LRS"
   enable_https_traffic_only = true
   tags                      = var.tags
-  provider                  = azurerm.storage_account
+  //provider                  = azurerm.storage_account
 }
 
 resource "azurerm_storage_container" "storage_container" {
   name                  = local.storage_container_name
   container_access_type = "private"
   storage_account_name  = azurerm_storage_account.storage_account.name
-  provider              = azurerm.storage_account
+  //provider              = azurerm.storage_account
 }
 
 /*
