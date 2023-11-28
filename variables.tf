@@ -64,7 +64,7 @@ variable "storage_container_name_suffix" {
 
 // Private Endpoint
 variable "private_endpoint_creation" {
-  type = boolean
+  type = bool
   default = false
   description = "Create a private endpoint for storage account"
 }
