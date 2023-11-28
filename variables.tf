@@ -4,6 +4,12 @@ variable "base_name" {
   type = string
 }
 
+variable "storage_account_location" {
+  description = "Location of the storage account"
+  type = string
+  default = ""
+}
+
 variable "storage_account_resource_group_name" {
   description = "value of the resource group name"
   type = string
@@ -28,6 +34,22 @@ variable "storage_account_name_suffix" {
   default = ""
 }
 
+variable "storage_account_account_tier" {
+  type = string
+  default = "Standard"
+}
+
+variable "storage_account_account_replication_type" {
+  type = string
+  default = "LRS"
+}
+
+variable "storage_account_account_kind" {
+  type = string
+  default = "StorageV2"
+}
+
+// Storage Container
 variable "storage_container_name_prefix" {
   description = "Prefix that will be applied before the base name for the storage container name"
   type    = string
