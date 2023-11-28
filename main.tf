@@ -1,17 +1,5 @@
-/*
-provider "azurerm" {
-  features {}
-  alias = "storage_account"
-  subscription_id = var.subscription_id
-  client_id = var.client_id
-  client_secret = var.client_secret
-  tenant_id = var.tenant_id
-} 
-*/
-
 data "azurerm_resource_group" "rg" {
-  name = var.resource_group_name
-  //provider = azurerm.storage_account
+  name = var.storage_account_resource_group_name
 }
 
 locals {
@@ -24,30 +12,27 @@ locals {
 resource "azurerm_storage_account" "storage_account" {
   name                      = local.storage_account_name
   resource_group_name       = data.azurerm_resource_group.rg.name
-  location                  = data.azurerm_resource_group.rg.location
-  account_kind              = "StorageV2"
-  account_tier              = "Standard"
-  account_replication_type  = "LRS"
+  location                  = length(var.storage_account_location) > 0 ? var.storage_account_location : data.azurerm_resource_group.rg.location
+  account_kind              = var.storage_account_account_kind
+  account_tier              = var.storage_account_account_tier
+  account_replication_type  = var.storage_account_account_replication_type
   enable_https_traffic_only = true
   tags                      = var.tags
-  //provider                  = azurerm.storage_account
 }
 
 resource "azurerm_storage_container" "storage_container" {
   name                  = local.storage_container_name
   container_access_type = "private"
   storage_account_name  = azurerm_storage_account.storage_account.name
-  //provider              = azurerm.storage_account
 }
 
-/*
+
 resource "azurerm_private_endpoint" "pep" {
+  count               = var.private_endpoint_creation ? 1 : 0
   name                = local.private_endpoint_name
   location            = data.azurerm_resource_group.rg.location
   resource_group_name = data.azurerm_resource_group.rg.name
   subnet_id           = var.private_endpoint_subnet_id
-  provider            = azurerm.storage_account
-
   private_service_connection {
     name                           = local.private_service_connection_name
     is_manual_connection           = false
@@ -56,4 +41,3 @@ resource "azurerm_private_endpoint" "pep" {
   }
   depends_on = [azurerm_storage_account.storage_account, azurerm_storage_container.storage_container]
 }
-*/
