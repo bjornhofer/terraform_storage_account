@@ -4,7 +4,7 @@ variable "base_name" {
   type = string
 }
 
-variable "resource_group_name" {
+variable "storage_account_resource_group_name" {
   description = "value of the resource group name"
   type = string
 }
@@ -19,7 +19,7 @@ variable "tags" {
 variable "storage_account_name_prefix" {
   description = "Prefix that will be applied before the base name for the storage account name"
   type    = string
-  default = "st"
+  default = ""
 }
 
 variable "storage_account_name_suffix" {
@@ -41,6 +41,12 @@ variable "storage_container_name_suffix" {
 }
 
 // Private Endpoint
+variable "private_endpoint_creation" {
+  type = boolean
+  default = false
+  description = "Create a private endpoint for storage account"
+}
+
 variable "private_endpoint_name_prefix" {
   description = "Prefix that will be applied before the base name for the private endpoint name"
   type    = string
