@@ -1,9 +1,4 @@
 // Base Information
-variable "base_name" {
-  description = "Base name for all resources"
-  type = string
-}
-
 variable "storage_account_location" {
   description = "Location of the storage account"
   type = string
@@ -15,13 +10,6 @@ variable "storage_account_resource_group_name" {
   type = string
 }
 
-variable "tags" {
-  type    = map(string)
-  description = "Tags to be applied to all resources"
-  default = {}
-}
-
-// Storage Account
 variable "storage_account_name_prefix" {
   description = "Prefix that will be applied before the base name for the storage account name"
   type    = string
@@ -34,6 +22,7 @@ variable "storage_account_name_suffix" {
   default = ""
 }
 
+// Storage Account
 variable "storage_account_account_tier" {
   type = string
   default = "Standard"
@@ -50,47 +39,12 @@ variable "storage_account_account_kind" {
 }
 
 // Storage Container
-variable "storage_container_name_prefix" {
-  description = "Prefix that will be applied before the base name for the storage container name"
-  type    = string
-  default = ""
-}
-
-variable "storage_container_name_suffix" {
-  description = "Suffix that will be applied after the base name for the storage container name"
-  type    = string
-  default = ""
-}
 
 // Private Endpoint
 variable "private_endpoint_creation" {
   type = bool
   default = false
   description = "Create a private endpoint for storage account"
-}
-
-variable "private_endpoint_name_prefix" {
-  description = "Prefix that will be applied before the base name for the private endpoint name"
-  type    = string
-  default = ""
-}
-
-variable "private_endpoint_name_suffix" {
-  description = "Suffix that will be applied after the base name for the private endpoint name"
-  type    = string
-  default = ""
-}
-
-variable "private_service_connection_name_prefix" {
-  description = "Prefix that will be applied before the base name for the private service connection name"
-  type    = string
-  default = ""
-}
-
-variable "private_service_connection_name_suffix" {
-  description = "Suffix that will be applied after the base name for the private service connection name"
-  type    = string
-  default = ""
 }
 
 variable "private_endpoint_subnet_id" {
